@@ -11,27 +11,6 @@ vim.keymap.set('n', '<leader>e', ':lua MiniFiles.open()<CR>')
 
 -- vim.keymap.set('n', '<C-/', ':lua Snacks.terminal()<CR>')
 
--- Sync clipboard between OS and Neovim.
---  Schedule the setting after `UiEnter` because it can increase startup-time.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
--- vim.schedule(function()
---   vim.o.clipboard = 'unnamedplus'
--- end)
--- vim.o.grepprg = 'rg --vimgrep --smart-case --hidden'
--- vim.o.grepformat = '%f:%l:%c:%m'
--- -- sets <search query>/g to be on by default, add /g to end of search query to undo thisvim.o.gdefault = true
---
--- if jit.os == 'Windows' then
---   vim.o.shellcmdflag =
---     '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
---   vim.o.shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
---   vim.o.shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
---   vim.o.shellquote = ''
---   vim.o.shellxquote = ''
---   vim.o.shell = vim.fn.executable 'pwsh' and 'pwsh' or 'powershell'
--- end
-
 --  See `:help wincmd` for a list of all window commands
 
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
@@ -736,8 +715,7 @@ require('lazy').setup {
   },
 
   -- Highlight todo, notes, etc in comments
-  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
-  { 'nvim-mini/mini.files', version = '*' },
+  -- { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
   {
     'nvim-mini/mini.nvim', -- Install the entire mini.nvim library
