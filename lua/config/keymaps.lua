@@ -7,21 +7,16 @@ local function map(mode, lhs, rhs, opts)
 end
 
 map({ 'n', 'i' }, '<C-s>', '<cmd>w<cr><esc>', { desc = 'Saves current file' })
-map('n', '<C-S>', '<cmd>wa<cr><esc>', { desc = 'Saves ALL file' })
-
+map('n', '<C-S>', '<cmd>wa<cr><esc>', { desc = 'Saves ALL files' })
 map('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 map('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 map('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 map('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
-
 map('n', '<Esc>', '<cmd>nohlsearch<CR>')
 map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-
 map('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-
--- vim.keymap.set('n', '<C-/', '<cmd>lua Snacks.terminal()<CR>')
---
--- vim.keymap.set('v', '<leader>rn', ':IncRename ')
--- vim.keymap.set('n', '<leader>rn', function()
---   return ':IncRename ' .. vim.fn.expand '<cword>'
--- end, {})
+map('n', '<C-u>', '<C-u>zz') -- Centers the cursor after jumping half a page
+map('n', '<C-d>', '<C-d>zz')
+map('v', 'K', ":m '<-2<CR>gv=gv") -- Moving selected text up or down
+map('v', 'J', ":m '>+1<CR>gv=gv")
+map('n', '<leader>va', 'gg<S-v>G') -- Select All
