@@ -3,11 +3,13 @@ My neovim config :)
 Based off Kickstart.nvim
 ## Plugins:
 
-Mason/lspconfig/
 
 lazy.nvim
+mason + mason/lspconfig
+neovim/lspconfig
 guess-indent.nvim
-Telescope.nvim
+Telescope.nvim:
+  - telescope-fzf-native.nvim
 which-key.nvim
 lazydev.nvim
 conform.nvim
@@ -19,9 +21,7 @@ treesitter.nvim
 flash.nvim
 colorful-menu.nvim
 lualine.nvim
-typescript-tools.nvim
 snacks.nvim:
-  - indent
   - notifier
   - quickfile
   - bigfile
@@ -33,6 +33,8 @@ mini.nvim:
   - mini.ai
   - mini.splitjoin
   - mini.files
+  - mini.icons
+whichkey
 
 ## Theme:
 
