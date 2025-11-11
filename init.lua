@@ -1,5 +1,5 @@
-require 'config.keymaps'
 require 'config.options'
+require 'config.keymaps'
 vim.keymap.set('n', '<leader>e', ':lua MiniFiles.open()<CR>')
 
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -15,6 +15,7 @@ local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 
 require('lazy').setup {
+
   'NMAC427/guess-indent.nvim',
 
   {
@@ -138,9 +139,24 @@ require('lazy').setup {
 
   require 'kickstart.plugins.autopairs',
 
-  { import = 'custom.plugins' },
+  { import = 'custom.plugins.lsp' },
+  { import = 'custom.plugins.ui' },
+  { import = 'custom.plugins.editor' },
+  { import = 'custom.plugins.code' },
 
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        'gzip',
+        'tarPlugin',
+        'tohtml',
+        'tutor',
+        'zipPlugin',
+      },
+    },
+  },
   ui = {
+    border = 'rounded',
     icons = vim.g.have_nerd_font and {} or {
       cmd = '⌘',
       config = '🛠',
