@@ -4,6 +4,7 @@ return { -- Autocompletion
   version = '1.*',
   dependencies = {
     { 'mikavilpas/blink-ripgrep.nvim' },
+    { 'fang2hou/blink-copilot' },
     {
       'L3MON4D3/LuaSnip',
       version = '2.*',
@@ -49,12 +50,27 @@ return { -- Autocompletion
     },
 
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'ripgrep', 'buffer' },
+      default = { 'lsp', 'path', 'snippets', 'ripgrep', 'buffer', 'copilot' },
       providers = {
+        copilot = {
+          name = 'Copilot',
+          module = 'blink-copilot',
+          score_offset = 1001,
+          async = true,
+          opts = {
+            max_completions = 2,
+            max_attempts = 2,
+          },
+        },
+        lsp = {
+          score_offset = 1000,
+        },
         ripgrep = {
           module = 'blink-ripgrep',
           name = 'Ripgrep',
-          opts = {},
+          opts = {
+            prefix_min_len = 3,
+          },
         },
       },
     },
