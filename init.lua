@@ -143,7 +143,6 @@ require('lazy').setup {
   { import = 'custom.plugins.ui' },
   { import = 'custom.plugins.editor' },
   { import = 'custom.plugins.code' },
-  { import = 'custom.plugins.ai' },
 
   performance = {
     rtp = {

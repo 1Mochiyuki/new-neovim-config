@@ -1,8 +1,32 @@
 return {
   {
     'folke/snacks.nvim',
+    dependencies = {
+      {
+        'folke/edgy.nvim',
+        ---@module 'edgy'
+        ---@param opts Edgy.Config
+        opts = function(_, opts)
+          for _, pos in ipairs { 'top', 'bottom', 'left', 'right' } do
+            opts[pos] = opts[pos] or {}
+            table.insert(opts[pos], {
+              ft = 'snacks_terminal',
+              size = { height = 0.4 },
+              title = '%{b:snacks_terminal.id}: %{b:term_title}',
+              filter = function(_buf, win)
+                return vim.w[win].snacks_win
+                  and vim.w[win].snacks_win.position == pos
+                  and vim.w[win].snacks_win.relative == 'editor'
+                  and not vim.w[win].trouble_preview
+              end,
+            })
+          end
+        end,
+      },
+    },
     priority = 1000,
     lazy = false,
+
     ---@type snacks.Config
     opts = {
       bigfile = { enabled = true },
@@ -20,6 +44,11 @@ return {
       notifier = {
         enabled = true,
         timeout = 3000,
+      },
+      terminal = {
+        win = {
+          position = 'float',
+        },
       },
       lazygit = { enable = true },
       picker = { enabled = false },
@@ -42,6 +71,31 @@ return {
           Snacks.lazygit()
         end,
         desc = 'Lazygit',
+      },
+      {
+        '<leader>vnt',
+        function()
+          local termOptions = {
+            win = {
+              position = 'right',
+            },
+          }
+          Snacks.terminal.open(nil, termOptions)
+        end,
+        desc = 'Open Terminal in Vertical New Tab',
+      },
+      {
+        '<leader>nt',
+        function()
+          local termOptions = {
+            win = {
+              position = 'bottom',
+              height = 0.35,
+            },
+          }
+          Snacks.terminal.open(nil, termOptions)
+        end,
+        desc = 'Open Terminal in New Tab',
       },
       {
         '<c-/>',
