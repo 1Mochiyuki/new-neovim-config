@@ -10,7 +10,7 @@ vim.lsp.config('lua_ls', {
     },
   },
 })
-vim.lsp.enable { 'gopls', 'lua_ls', 'vtsls', 'svelte', 'tailwindcss', 'marksman', 'biome', 'html', 'jsonls' }
+vim.lsp.enable { 'gopls', 'lua_ls', 'tsgo', 'svelte', 'tailwindcss', 'marksman', 'html', 'jsonls', 'biome' }
 return {
   {
     'neovim/nvim-lspconfig',
