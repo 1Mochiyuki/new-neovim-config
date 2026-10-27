@@ -1,5 +1,6 @@
 require 'config.options'
 require 'config.keymaps'
+
 vim.keymap.set('n', '<leader>e', ':lua MiniFiles.open()<CR>')
 
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -79,6 +80,16 @@ require('lazy').setup {
   },
 
   {
+    'nvim-flutter/flutter-tools.nvim',
+    lazy = false,
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'stevearc/dressing.nvim', -- optional for vim.ui.select
+    },
+    opts = {},
+  },
+
+  {
     'folke/lazydev.nvim',
     ft = 'lua',
     opts = {
@@ -105,7 +116,7 @@ require('lazy').setup {
     opts = {
       notify_on_error = false,
       format_on_save = function(bufnr)
-        local disable_filetypes = { c = true, cpp = true }
+        local disable_filetypes = {}
         if disable_filetypes[vim.bo[bufnr].filetype] then
           return nil
         else
