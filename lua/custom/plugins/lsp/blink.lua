@@ -1,33 +1,8 @@
-return { -- Autocompletion
-  'saghen/blink.cmp',
-  event = 'VimEnter',
-  version = '1.*',
-  dependencies = {
-    { 'mikavilpas/blink-ripgrep.nvim' },
-    {
-      'L3MON4D3/LuaSnip',
-      version = '2.*',
-      build = (function()
-        if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
-          return
-        end
-        return 'make install_jsregexp'
-      end)(),
-      dependencies = {
-        {
-          'rafamadriz/friendly-snippets',
-          config = function()
-            require('luasnip.loaders.from_vscode').lazy_load()
-          end,
-        },
-      },
-      opts = {},
-    },
-    'folke/lazydev.nvim',
-  },
-  opts = {
+local M = {}
+
+function M.setup()
+  require('blink.cmp').setup {
     keymap = {
-      -- preset = 'default',
       ['<CR>'] = {
         function(cmp)
           if cmp.snippet_active() then
@@ -40,7 +15,6 @@ return { -- Autocompletion
       },
 
       ['<S-space>'] = false,
-      -- { 'show', 'show_documentation', 'hide_documentation' },
       ['<C-e>'] = { 'hide', 'fallback' },
 
       ['<Tab>'] = { 'snippet_forward', 'fallback' },
@@ -73,7 +47,6 @@ return { -- Autocompletion
       },
     },
     appearance = {
-
       use_nvim_cmp_as_default = true,
       nerd_font_variant = 'normal',
       kind_icons = {
@@ -83,10 +56,10 @@ return { -- Autocompletion
         Function = '󰊕',
         Constructor = '󰒓',
         Field = '󰜢',
-        Variable = '',
+        Variable = '',
         Property = '󰖷',
-        Class = '',
-        Interface = '',
+        Class = '',
+        Interface = '',
         Struct = '',
         Module = '󰅩',
         Unit = '󰑭',
@@ -95,19 +68,18 @@ return { -- Autocompletion
         EnumMember = '󰦨',
         Keyword = '󰻾',
         Constant = '󰏿',
-        Snippet = '',
+        Snippet = '',
         Color = '󰏘',
         File = '󰈔',
         Reference = '󰬲',
         Folder = '󰉋',
         Event = '󱐋',
         Operator = '󰆕',
-        TypeParameter = '',
+        TypeParameter = '',
       },
     },
 
     completion = {
-
       menu = {
         border = 'rounded',
         scrollbar = false,
@@ -148,5 +120,9 @@ return { -- Autocompletion
     fuzzy = { implementation = 'prefer_rust_with_warning' },
 
     signature = { enabled = true },
-  },
-}
+  }
+
+  require('luasnip.loaders.from_vscode').lazy_load()
+end
+
+return M

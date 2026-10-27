@@ -78,7 +78,6 @@ vim.schedule(function()
 end)
 vim.o.grepprg = 'rg --vimgrep --smart-case --hidden'
 vim.o.grepformat = '%f:%l:%c:%m'
--- sets <search query>/g to be on by default, add /g to end of search query to undo thisvim.o.gdefault = true
 
 if jit.os == 'Windows' then
   vim.o.shellcmdflag =
