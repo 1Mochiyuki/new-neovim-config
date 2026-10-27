@@ -23,7 +23,7 @@ function M.setup()
   local servers = {
     'gopls',
     'lua_ls',
-    'ts_ls',
+    'tsc',
     'svelte',
     'tailwindcss',
     'marksman',
@@ -31,7 +31,7 @@ function M.setup()
     'jsonls',
     'oxlint',
     'jdtls',
-    'rust_analyzer',
+    'rust-analyzer',
     'clangd',
     'kotlin',
   }
@@ -49,13 +49,25 @@ function M.setup()
 
       map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
       map('<leader>ca', vim.lsp.buf.code_action, '[G]oto Code [A]ction', { 'n', 'x' })
-      map('grr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-      map('gri', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-      map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+      map('grr', function()
+        Snacks.picker.lsp_references()
+      end, '[G]oto [R]eferences')
+      map('gri', function()
+        Snacks.picker.lsp_implementations()
+      end, '[G]oto [I]mplementation')
+      map('gd', function()
+        Snacks.picker.lsp_definitions()
+      end, '[G]oto [D]efinition')
       map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-      map('gO', require('telescope.builtin').lsp_document_symbols, 'Open Document Symbols')
-      map('gW', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Open Workspace Symbols')
-      map('grt', require('telescope.builtin').lsp_type_definitions, '[G]oto [T]ype Definition')
+      map('gO', function()
+        Snacks.picker.lsp_document_symbols()
+      end, 'Open Document Symbols')
+      map('gW', function()
+        Snacks.picker.lsp_workspace_symbols()
+      end, 'Open Workspace Symbols')
+      map('grt', function()
+        Snacks.picker.lsp_type_definitions()
+      end, '[G]oto [T]ype Definition')
 
       local client = vim.lsp.get_client_by_id(event.data.client_id)
       if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then

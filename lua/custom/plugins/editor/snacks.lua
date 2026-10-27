@@ -1,61 +1,6 @@
 local M = {}
 
 function M.setup()
-  require('edgy').setup {
-    top = {
-      {
-        ft = 'snacks_terminal',
-        size = { height = 0.4 },
-        title = '%{b:snacks_terminal.id}: %{b:term_title}',
-        filter = function(_buf, win)
-          return vim.w[win].snacks_win
-            and vim.w[win].snacks_win.position == 'top'
-            and vim.w[win].snacks_win.relative == 'editor'
-            and not vim.w[win].trouble_preview
-        end,
-      },
-    },
-    bottom = {
-      {
-        ft = 'snacks_terminal',
-        size = { height = 0.4 },
-        title = '%{b:snacks_terminal.id}: %{b:term_title}',
-        filter = function(_buf, win)
-          return vim.w[win].snacks_win
-            and vim.w[win].snacks_win.position == 'bottom'
-            and vim.w[win].snacks_win.relative == 'editor'
-            and not vim.w[win].trouble_preview
-        end,
-      },
-    },
-    left = {
-      {
-        ft = 'snacks_terminal',
-        size = { height = 0.4 },
-        title = '%{b:snacks_terminal.id}: %{b:term_title}',
-        filter = function(_buf, win)
-          return vim.w[win].snacks_win
-            and vim.w[win].snacks_win.position == 'left'
-            and vim.w[win].snacks_win.relative == 'editor'
-            and not vim.w[win].trouble_preview
-        end,
-      },
-    },
-    right = {
-      {
-        ft = 'snacks_terminal',
-        size = { height = 0.4 },
-        title = '%{b:snacks_terminal.id}: %{b:term_title}',
-        filter = function(_buf, win)
-          return vim.w[win].snacks_win
-            and vim.w[win].snacks_win.position == 'right'
-            and vim.w[win].snacks_win.relative == 'editor'
-            and not vim.w[win].trouble_preview
-        end,
-      },
-    },
-  }
-
   require('snacks').setup {
     bigfile = { enabled = true },
     dashboard = { enabled = false },
@@ -79,7 +24,7 @@ function M.setup()
       },
     },
     lazygit = { enable = true },
-    picker = { enabled = false },
+    picker = { enabled = true },
     quickfile = { enabled = true },
     scope = { enabled = false },
     scroll = { enabled = false },

@@ -115,14 +115,12 @@ function M.setup()
       },
     },
 
-    snippets = { preset = 'luasnip' },
+    snippets = { preset = 'default' },
 
     fuzzy = { implementation = 'prefer_rust_with_warning' },
 
     signature = { enabled = true },
   }
-
-  require('luasnip.loaders.from_vscode').lazy_load()
 end
 
 return M

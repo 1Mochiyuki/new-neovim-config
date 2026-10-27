@@ -1,7 +1,8 @@
 local M = {}
 
 function M.setup()
-  require('nvim-autopairs').setup {}
+  -- Replaces nvim-autopairs
+  require('mini.pairs').setup()
 end
 
 return M

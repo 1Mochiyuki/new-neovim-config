@@ -28,19 +28,13 @@ vim.pack.add({
   { src = 'https://github.com/lewis6991/gitsigns.nvim' },
   { src = 'https://github.com/NMAC427/guess-indent.nvim' },
   { src = 'https://github.com/folke/snacks.nvim' },
-  { src = 'https://github.com/folke/edgy.nvim' },
   { src = 'https://github.com/nvim-lualine/lualine.nvim' },
   { src = 'https://github.com/yavorski/lualine-macro-recording.nvim' },
-  { src = 'https://github.com/nvim-telescope/telescope.nvim' },
-  { src = 'https://github.com/nvim-telescope/telescope-ui-select.nvim' },
   { src = 'https://github.com/xzbdmw/colorful-menu.nvim' },
-  -- NOTE: telescope-fzf-native dropped: needs make + C compiler, was already
-  -- skipped on this machine via lazy's cond.
 
   -- editor
   { src = 'https://github.com/folke/flash.nvim' },
   { src = 'https://github.com/stevearc/conform.nvim' },
-  { src = 'https://github.com/windwp/nvim-autopairs' },
   { src = 'https://github.com/windwp/nvim-ts-autotag' },
   { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = 'main' },
   { src = 'https://github.com/folke/lazydev.nvim' },
@@ -50,11 +44,7 @@ vim.pack.add({
   -- lsp / completion
   { src = 'https://github.com/neovim/nvim-lspconfig' },
   { src = 'https://github.com/mason-org/mason.nvim' },
-  { src = 'https://github.com/mason-org/mason-lspconfig.nvim' },
-  { src = 'https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim' },
-  { src = 'https://github.com/j-hui/fidget.nvim' },
   { src = 'https://github.com/mikavilpas/blink-ripgrep.nvim' },
-  { src = 'https://github.com/L3MON4D3/LuaSnip', version = vim.version.range '2.*' },
   { src = 'https://github.com/rafamadriz/friendly-snippets' },
   -- blink.cmp 2.0 is coming; stay on 1.x until it is released and reviewed
   { src = 'https://github.com/saghen/blink.cmp', version = vim.version.range '1.*' },
@@ -67,7 +57,7 @@ vim.pack.add({
 require('custom.plugins.ui.theme').setup()
 require('custom.plugins.ui.which-key').setup()
 require('custom.plugins.ui.gitsigns').setup()
-require('custom.plugins.ui.telescope').setup()
+require('custom.plugins.ui.picker').setup()
 require('custom.plugins.ui.lualine').setup()
 require('custom.plugins.ui.colorful-menu').setup()
 
@@ -87,4 +77,3 @@ require('custom.plugins.lsp.csharp').setup()
 
 require('guess-indent').setup {}
 require('flutter-tools').setup {}
-require('fidget').setup {}
