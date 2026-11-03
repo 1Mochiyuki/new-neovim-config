@@ -29,6 +29,7 @@ function M.setup()
     'marksman',
     'html',
     'jsonls',
+    'roslyn',
     'oxlint',
     'jdtls',
     'rust-analyzer',
