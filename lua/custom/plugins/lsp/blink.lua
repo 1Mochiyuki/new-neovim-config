@@ -17,7 +17,27 @@ function M.setup()
       ['<S-space>'] = false,
       ['<C-e>'] = { 'hide', 'fallback' },
 
-      ['<Tab>'] = { 'snippet_forward', 'fallback' },
+      ['<Tab>'] = {
+        function(cmp)
+          if cmp.snippet_active() then
+            return cmp.snippet_forward()
+          end
+          -- accept the selected completion if the menu is visible
+          if cmp.select_and_accept() then
+            return true
+          end
+          -- jump out of a pair if a closer is directly under the cursor
+          local col = vim.api.nvim_win_get_cursor(0)[2]
+          local next_char = vim.api.nvim_get_current_line():sub(col + 1, col + 1)
+          local closers = ')]}>"\'`'
+          if closers:find(next_char, 1, true) then
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Right>', true, false, true), 'n', false)
+            return true
+          end
+          return false
+        end,
+        'fallback',
+      },
       ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
 
       ['<Up>'] = { 'select_prev', 'fallback' },
@@ -106,7 +126,7 @@ function M.setup()
         show_on_insert_on_trigger_character = true,
       },
       list = {
-        selection = { preselect = true, auto_insert = true },
+        selection = { preselect = false, auto_insert = true },
       },
       accept = {
         auto_brackets = {
