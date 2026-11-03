@@ -34,7 +34,7 @@ local config = {
   options = {
     theme = bubbles_theme,
     component_separators = '',
-    section_separators = { left = 'εé│', right = 'εé╕' },
+    section_separators = { left = '', right = '' },
   },
   sections = {},
   inactive_sections = {
@@ -49,7 +49,7 @@ local config = {
     lualine_a = {
       {
         'mode',
-        separator = { left = ' εé╕' },
+        separator = { left = '' },
         right_padding = 2,
         left_padding = 2,
       },
@@ -76,7 +76,7 @@ local config = {
     },
     lualine_z = {
       {
-        separator = { right = 'εé│ ' },
+        separator = { right = '' },
         function()
           local clients = vim.lsp.get_clients()
           local msg = 'LSP: '
