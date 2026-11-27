@@ -55,3 +55,9 @@ Requires Neovim 0.12+
 
 ## Theme:
 - vesper.nvim
+
+Use `<leader>uC` to preview and select a colorscheme, or run
+`:colorscheme alabaster-sharp`, `:colorscheme koda-light`, or `:colorscheme vesper`.
+To choose the startup theme, change the colorscheme in `lua/custom/plugins/ui/theme.lua`.
+Per-theme highlight overrides live in `lua/custom/plugins/ui/themes/alabaster-sharp.lua`
+and `lua/custom/plugins/ui/themes/koda-light.lua`; edit them and reselect the theme.

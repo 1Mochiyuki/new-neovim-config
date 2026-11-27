@@ -20,9 +20,12 @@ vim.g.mkdp_filetypes = { 'markdown' }
 vim.pack.add({
   -- dependencies first
   { src = 'https://github.com/nvim-lua/plenary.nvim' },
+  { src = 'https://github.com/MunifTanjim/nui.nvim' },
 
   -- ui
   { src = 'https://github.com/datsfilipe/vesper.nvim' },
+  { src = 'https://github.com/nuvic/alabaster-sharp.nvim' },
+  { src = 'https://github.com/oskarnurm/koda.nvim' },
   { src = 'https://github.com/nvim-mini/mini.nvim' },
   { src = 'https://github.com/folke/which-key.nvim' },
   { src = 'https://github.com/lewis6991/gitsigns.nvim' },
@@ -40,10 +43,12 @@ vim.pack.add({
   { src = 'https://github.com/folke/lazydev.nvim' },
   { src = 'https://github.com/nvim-flutter/flutter-tools.nvim' },
   { src = 'https://github.com/iamcco/markdown-preview.nvim' },
+  { src = 'https://github.com/oclay1st/gradle.nvim' },
 
   -- lsp / completion
   { src = 'https://github.com/neovim/nvim-lspconfig' },
   { src = 'https://github.com/mason-org/mason.nvim' },
+  { src = 'https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim' },
   { src = 'https://github.com/mikavilpas/blink-ripgrep.nvim' },
   { src = 'https://github.com/rafamadriz/friendly-snippets' },
   -- blink.cmp 2.0 is coming; stay on 1.x until it is released and reviewed
@@ -69,6 +74,8 @@ require('custom.plugins.editor.autopairs').setup()
 require('custom.plugins.editor.lazydev').setup()
 require('custom.plugins.editor.markdown-preview').setup()
 require('custom.plugins.editor.treesitter').setup()
+require('custom.plugins.editor.gradle').setup()
+require('custom.plugins.editor.flutter').setup()
 
 require('custom.plugins.lsp.lsp').setup()
 require('custom.plugins.lsp.blink').setup()
@@ -76,4 +83,3 @@ require('custom.plugins.lsp.kotlin').setup()
 require('custom.plugins.lsp.csharp').setup()
 
 require('guess-indent').setup {}
-require('flutter-tools').setup {}

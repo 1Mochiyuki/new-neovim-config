@@ -22,8 +22,8 @@ function M.setup()
           if cmp.snippet_active() then
             return cmp.snippet_forward()
           end
-          -- accept the selected completion if the menu is visible
-          if cmp.select_and_accept() then
+          -- accept only if an item was explicitly selected, otherwise fall through
+          if cmp.accept() then
             return true
           end
           -- jump out of a pair if a closer is directly under the cursor

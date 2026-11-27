@@ -41,6 +41,11 @@ function M.setup()
       { '<leader>s', group = '[S]earch' },
       { '<leader>t', group = '[T]oggle' },
       { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+      { '<leader>a', group = 'Development tools' },
+      { '<leader>ag', group = '[G]radle' },
+      { '<leader>af', group = '[F]lutter' },
+      { '<leader>m', group = '[M]arkdown' },
+      { '<leader>j', group = '[J]ump', mode = { 'n', 'x', 'o' } },
     },
   }
 end

@@ -2,7 +2,7 @@ local M = {}
 
 function M.setup()
   require('conform').setup {
-    notify_on_error = false,
+    notify_on_error = true,
     format_on_save = function(bufnr)
       local disable_filetypes = {}
       if disable_filetypes[vim.bo[bufnr].filetype] then

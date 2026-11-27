@@ -6,6 +6,8 @@ function M.setup()
       'github:mason-org/mason-registry',
       'github:Crashdummyy/mason-registry',
     },
+  }
+  require('mason-tool-installer').setup {
     ensure_installed = M.ensure_installed,
   }
 
@@ -32,9 +34,9 @@ function M.setup()
     'roslyn',
     'oxlint',
     'jdtls',
-    'rust-analyzer',
+    'rust_analyzer',
     'clangd',
-    'kotlin',
+    'kotlin_lsp',
   }
   for _, server in ipairs(servers) do
     vim.lsp.enable(server)
@@ -119,24 +121,27 @@ function M.setup()
   }
 end
 
--- NOTE: these are Mason registry package names (not lspconfig names),
--- kept verbatim from the previous config
+-- Mason package names, which can differ from LSP configuration names.
 M.ensure_installed = {
+  'ast-grep',
   'gopls',
-  'lua_ls',
-  'typescript',
-  'svelte',
-  'tailwindcss',
+  'lua-language-server',
+  'tsc',
+  'svelte-language-server',
+  'tailwindcss-language-server',
   'marksman',
-  'html',
-  'jsonls',
+  'html-lsp',
+  'json-lsp',
   'oxlint',
   'jdtls',
   'rust-analyzer',
   'clangd',
-  'kotlin',
-  'roslyn',
+  'kotlin-lsp',
+  'roslyn', -- Crashdummyy registry package used by roslyn.nvim
   'csharpier',
+  'stylua',
+  'prettierd',
+  'prettier',
 }
 
 return M

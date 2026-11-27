@@ -1,38 +1,11 @@
-local colors = {
-  blue = '#80a0ff',
-  cyan = '#79dac8',
-  black = '#080808',
-  white = '#c6c6c6',
-  red = '#ff5189',
-  violet = '#c0a1fe',
-  bg = '#191919',
-
-  visual = '#FFCFA8',
-  insert = '#82d9c2',
-  replace = '#FF8080',
-  normal = '#A0A0A0',
-}
-local bubbles_theme = {
-  normal = {
-    a = { fg = colors.black, bg = colors.normal },
-    b = { fg = colors.white, bg = colors.bg },
-    c = { fg = colors.white },
-  },
-
-  insert = { a = { fg = colors.black, bg = colors.insert } },
-  visual = { a = { fg = colors.black, bg = colors.visual } },
-  replace = { a = { fg = colors.black, bg = colors.replace } },
-
-  inactive = {
-    a = { fg = colors.white, bg = colors.black },
-    b = { fg = colors.white, bg = colors.black },
-    c = { fg = colors.white },
-  },
-}
-
 local config = {
   options = {
-    theme = bubbles_theme,
+    theme = function()
+      if vim.g.colors_name == 'koda-light' then
+        return require 'custom.plugins.ui.themes.koda-light-lualine'
+      end
+      return 'auto'
+    end,
     component_separators = '',
     section_separators = { left = '', right = '' },
   },
