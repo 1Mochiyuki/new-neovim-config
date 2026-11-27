@@ -71,6 +71,40 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+vim.api.nvim_create_autocmd('BufReadPost', {
+  desc = 'Restore the last cursor position',
+  group = vim.api.nvim_create_augroup('restore-cursor-position', { clear = true }),
+  callback = function(event)
+    if vim.bo[event.buf].buftype ~= '' or vim.bo[event.buf].filetype == 'gitcommit' then
+      return
+    end
+    local mark = vim.api.nvim_buf_get_mark(event.buf, '"')
+    if mark[1] > 0 and mark[1] <= vim.api.nvim_buf_line_count(event.buf) then
+      pcall(vim.api.nvim_win_set_cursor, 0, mark)
+    end
+  end,
+})
+
+vim.api.nvim_create_autocmd('BufWritePre', {
+  desc = 'Offer to create missing parent directories',
+  group = vim.api.nvim_create_augroup('create-parent-directory', { clear = true }),
+  callback = function(event)
+    if vim.bo[event.buf].buftype ~= '' or event.match:match('^%a[%w+.-]*://') then
+      return
+    end
+    local dir = vim.fn.fnamemodify(event.match, ':p:h')
+    if vim.fn.isdirectory(dir) == 1 then
+      return
+    end
+    if vim.fn.confirm('Create directory ' .. dir .. '?', '&Yes\n&No', 2) ~= 1 then
+      error('Write cancelled: parent directory does not exist')
+    end
+    if vim.fn.mkdir(dir, 'p') == 0 and vim.fn.isdirectory(dir) == 0 then
+      error('Could not create directory: ' .. dir)
+    end
+  end,
+})
+
 vim.opt.fileformat = 'unix'
 
 vim.schedule(function()

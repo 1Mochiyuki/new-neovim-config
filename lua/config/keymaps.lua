@@ -7,8 +7,21 @@ local function map(mode, lhs, rhs, opts)
 end
 
 map('n', '<leader>d', vim.diagnostic.open_float, { desc = 'Shows Diagnostics' })
-map({ 'n', 'i', 'v' }, '<C-s>', '<cmd>w<CR><esc>', { desc = 'Saves current file' })
-map('n', '<C-S>S', '<cmd>wa<CR><esc>', { desc = 'Saves ALL files' })
+map('n', '<leader>eh', function()
+  local file = vim.api.nvim_buf_get_name(0)
+  local dir = vim.bo.buftype == '' and file ~= '' and vim.fn.fnamemodify(file, ':h') or vim.fn.getcwd()
+  vim.ui.input({ prompt = 'Edit relative to ' .. dir .. ': ' }, function(path)
+    if not path or path == '' then
+      return
+    end
+    if vim.fn.isabsolutepath(path) == 0 then
+      path = vim.fs.joinpath(dir, path)
+    end
+    vim.cmd.edit({ args = { path } })
+  end)
+end, { desc = 'Edit file relative to current file' })
+map({ 'n', 'i', 'v' }, '<C-s>', '<esc><cmd>w<CR>', { desc = 'Saves current file' })
+map('n', '<C-S>S', '<cmd>wa<CR>', { desc = 'Saves ALL files' })
 map('n', '<leader>l', function()
   vim.pack.update()
 end, { desc = 'Update plugins (vim.pack)' })

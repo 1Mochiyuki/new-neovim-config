@@ -4,6 +4,14 @@ function M.setup()
   local map = function(lhs, fn, desc)
     vim.keymap.set('n', lhs, fn, { desc = desc })
   end
+  local current_file_dir = function()
+    local file = vim.api.nvim_buf_get_name(0)
+    if vim.bo.buftype ~= '' or file == '' then
+      return vim.fn.getcwd()
+    end
+    local dir = vim.fn.fnamemodify(file, ':h')
+    return vim.fn.isdirectory(dir) == 1 and dir or vim.fn.getcwd()
+  end
 
   map('<leader>sh', function()
     Snacks.picker.help()
@@ -14,6 +22,9 @@ function M.setup()
   map('<leader><space>', function()
     Snacks.picker.files()
   end, '[S]earch [F]iles')
+  map('<leader>fF', function()
+    Snacks.picker.files { cwd = current_file_dir() }
+  end, 'Find files in current file directory')
   map('<leader>ss', function()
     Snacks.picker.pick()
   end, '[S]earch [S]elect Picker')
@@ -23,6 +34,9 @@ function M.setup()
   map('<leader>sg', function()
     Snacks.picker.grep()
   end, '[S]earch by [G]rep')
+  map('<leader>sG', function()
+    Snacks.picker.grep { cwd = current_file_dir() }
+  end, 'Search text in current file directory')
   map('<leader>sA', function()
     require('custom.plugins.ui.ast-grep').search()
   end, '[S]earch by [A]ST')
